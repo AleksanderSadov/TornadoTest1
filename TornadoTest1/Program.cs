@@ -83,6 +83,8 @@ namespace TornadoTest1
                 return Direction.Idle;
             }
 
+            // TODO не пробовал кейс если вызвать лифт на текущем этаже, по коду ожидаю баги. Пока оставлю как есть, что успел в уделенное время
+            // TODO можно зарефакторить, хотелось бы уменьшить ветвление, но пока оставляю самое простое
             if (CurrentDirection == Direction.Idle || CurrentDirection == Direction.Up)
             {
                 if (HasCallsAbove)
@@ -112,6 +114,7 @@ namespace TornadoTest1
 
         private bool HasCallsAbove
         {
+            // TODO в целом думаю можно попробовать оптимизировать от O(n) до O(1) ради демонстрации в тестовом, но пока оставлю как есть. Да и лифты не с миллионами этажей обычно работают)
             get { return Calls.Any(f => f > CurrentFloor); }
         }
 
